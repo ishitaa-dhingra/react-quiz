@@ -1,8 +1,16 @@
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
+
 function FinishScreen({ points, maxPossiblePoints, highscore, dispatch }) {
   const percentage = (points / maxPossiblePoints) * 100;
-
+  const { width, height } = useWindowSize();
   let emoji;
-  if (percentage === 100) emoji = "🥇";
+  let confetti = null;
+
+  if (percentage === 100) {
+    emoji = "🥇";
+    confetti = <Confetti width={width} height={height} />;
+  }
   if (percentage >= 80 && percentage < 100) emoji = "🙂";
   if (percentage >= 50 && percentage < 80) emoji = "🫠";
   if (percentage >= 0 && percentage < 50) emoji = "🙃";
@@ -21,6 +29,7 @@ function FinishScreen({ points, maxPossiblePoints, highscore, dispatch }) {
       >
         Restart Quiz
       </button>
+      {confetti}
     </>
   );
 }

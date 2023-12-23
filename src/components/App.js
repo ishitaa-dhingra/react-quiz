@@ -68,7 +68,7 @@ function reducer(state, action) {
 
     case "reset":
       return {
-        ...initialState,
+        ...state,
         questions: state.questions,
         status: "ready",
         index: 0,

@@ -1,11 +1,11 @@
 :root {
-  --color-darkest: #343a40;
-  --color-dark: #495057;
+  --color-darkest: #191e38;
+  --color-dark: #5a636b;
   --color-medium: #ced4da;
   --color-light: #f1f3f5;
 
   --color-theme: #1098ad;
-  --color-accent: #ffa94d;
+  --color-accent: #e79d4d;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
