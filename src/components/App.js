@@ -21,6 +21,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  selectedNumOfQuestions: 5,
   secondsRemaining: null,
 };
 
@@ -38,11 +39,16 @@ function reducer(state, action) {
         ...state,
         status: "error",
       };
+    case "questions_selected":
+      return {
+        ...state,
+        selectedNumOfQuestions: action.payload,
+      };
     case "start":
       return {
         ...state,
         status: "active",
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+        secondsRemaining: state.selectedNumOfQuestions * SECS_PER_QUESTION,
       };
 
     case "newAnswer":
@@ -93,16 +99,24 @@ function reducer(state, action) {
 }
 function App() {
   const [
-    { questions, status, index, answer, points, highscore, secondsRemaining },
+    {
+      questions,
+      status,
+      index,
+      answer,
+      points,
+      highscore,
+      secondsRemaining,
+      selectedNumOfQuestions,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
   const [theme, setTheme] = useState("dark");
   const numofQuestions = questions.length;
-  const maxPossiblePoints = questions.reduce(
-    (prev, curr) => prev + curr.points,
-    0
-  );
+  const maxPossiblePoints = questions
+    .slice(0, selectedNumOfQuestions)
+    .reduce((prev, curr) => prev + curr.points, 0);
 
   useEffect(function () {
     fetch("http://localhost:9000/questions")
@@ -118,13 +132,17 @@ function App() {
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
         {status === "ready" && (
-          <StartScreen numofQuestions={numofQuestions} dispatch={dispatch} />
+          <StartScreen
+            numofQuestions={numofQuestions}
+            dispatch={dispatch}
+            selectedNumOfQuestions={selectedNumOfQuestions}
+          />
         )}
         {status === "active" && (
           <>
             <ProgressBar
               index={index}
-              numofQuestions={numofQuestions}
+              selectedNumOfQuestions={selectedNumOfQuestions}
               points={points}
               maxPossiblePoints={maxPossiblePoints}
               answer={answer}
@@ -140,7 +158,7 @@ function App() {
                 dispatch={dispatch}
                 answer={answer}
                 index={index}
-                numofQuestions={numofQuestions}
+                selectedNumOfQuestions={selectedNumOfQuestions}
               />
             </Footer>
           </>
