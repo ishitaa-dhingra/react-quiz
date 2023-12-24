@@ -9,8 +9,8 @@
 }
 
 .light {
-  --color-darkest: #e6e0da;
-  --color-dark: #d4ccc3;
+  --color-darkest: #dfd9d2;
+  --color-dark: #c5bcb1;
   --color-medium: #14025c;
   --color-light: #14025c;
 
@@ -163,6 +163,9 @@ progress {
   margin-top: 5px;
 }
 
+.prev-btn {
+  float: left;
+}
 .options {
   display: flex;
   flex-direction: column;
@@ -224,12 +227,13 @@ progress {
 }
 
 .timer {
-  float: left;
+  position: absolute;
   font-size: 1.8rem;
   color: var(--color-medium);
   border: 2px solid var(--color-dark);
   padding: 1.35rem 2.8rem;
   border-radius: 100px;
+  left: 48%;
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
@@ -281,4 +285,9 @@ progress {
   width: 50px;
   cursor: pointer;
   margin-left: 40px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

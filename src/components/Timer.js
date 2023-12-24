@@ -12,7 +12,7 @@ function Timer({ dispatch, secondsRemaining }) {
   }, []);
 
   return (
-    <div className="timer">
+    <div className=" btn-ui timer">
       {mins < 10 && "0"}
       {mins}:{secs < 10 && "0"}
       {secs}
