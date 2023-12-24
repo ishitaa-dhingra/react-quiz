@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Header from "./Header";
 import Main from "./Main";
@@ -97,6 +97,7 @@ function App() {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  const [theme, setTheme] = useState("dark");
   const numofQuestions = questions.length;
   const maxPossiblePoints = questions.reduce(
     (prev, curr) => prev + curr.points,
@@ -110,8 +111,8 @@ function App() {
       .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
   return (
-    <div className="app">
-      <Header />
+    <div className={`app ${theme}`}>
+      <Header theme={theme} setTheme={setTheme} />
 
       <Main className="main">
         {status === "loading" && <Loader />}
