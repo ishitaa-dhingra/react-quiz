@@ -1,5 +1,5 @@
 :root {
-  --color-darkest: #191e38;
+  --color-darkest: rgba(25, 30, 56, 0.8);
   --color-dark: #5a636b;
   --color-medium: #ced4da;
   --color-light: #f1f3f5;
@@ -37,6 +37,10 @@ body {
   min-height: 100vh;
   color: var(--color-light);
   background-color: var(--color-darkest);
+  background-image: url("./assets/bg.jpg"); /* Replace with the actual path to your image */
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
 }
 
 .app {
@@ -49,7 +53,7 @@ body {
 }
 
 .main {
-  width: 80rem;
+  width: 50rem;
   min-height: 100vh;
 }
 
@@ -156,7 +160,7 @@ progress {
 
 .btn-ui {
   float: right;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .options {

@@ -16,7 +16,9 @@ function StartScreen({ numofQuestions, dispatch, selectedNumOfQuestions }) {
           }
         }}
       />
-      <label for="volume">{selectedNumOfQuestions}</label>
+      <label for="volume">
+        <h4>{selectedNumOfQuestions}</h4>
+      </label>
       <button
         className="btn btn-ui"
         onClick={() => dispatch({ type: "start" })}
