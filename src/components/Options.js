@@ -1,5 +1,6 @@
-function Options({ question, dispatch, answer }) {
-  const hasAnswered = answer != null;
+function Options({ question, dispatch, answer, status }) {
+  const hasAnswered = answer != null || status === "verify";
+
   return (
     <div className="options">
       {question.options.map((option, index) => (
@@ -13,7 +14,7 @@ function Options({ question, dispatch, answer }) {
           }`}
           key={option}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}
-          disabled={answer !== null}
+          disabled={hasAnswered}
         >
           {option}
         </button>

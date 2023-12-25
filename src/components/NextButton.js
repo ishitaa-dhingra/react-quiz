@@ -1,5 +1,11 @@
-function NextButton({ dispatch, answer, index, selectedNumOfQuestions }) {
-  if (answer === null) return null;
+function NextButton({
+  dispatch,
+  answer,
+  index,
+  selectedNumOfQuestions,
+  status,
+}) {
+  if (answer === null && status !== "verify") return null;
 
   if (index < selectedNumOfQuestions - 1)
     return (
@@ -11,15 +17,11 @@ function NextButton({ dispatch, answer, index, selectedNumOfQuestions }) {
       </button>
     );
 
-  if (index === selectedNumOfQuestions - 1)
-    return (
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "finish" })}
-      >
-        Finish
-      </button>
-    );
+  return (
+    <button className="btn btn-ui" onClick={() => dispatch({ type: "finish" })}>
+      Finish
+    </button>
+  );
 }
 
 export default NextButton;

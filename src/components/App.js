@@ -11,6 +11,7 @@ import ProgressBar from "./ProgressBar";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import PreviousButton from "./PrevButton";
 
 const SECS_PER_QUESTION = 30;
 const initialState = {
@@ -21,7 +22,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: JSON.parse(localStorage.getItem("highscore")),
   selectedNumOfQuestions: 5,
   secondsRemaining: null,
 };
@@ -63,6 +64,14 @@ function reducer(state, action) {
             ? state.points + question.points
             : state.points,
       };
+    case "prevQuestion":
+      const index = state.index - 1 >= 0 ? state.index - 1 : state.index;
+
+      return {
+        ...state,
+        index,
+        answer: state.answers.at(index) ? state.answers.at(index) : null,
+      };
 
     case "nextQuestion":
       return {
@@ -84,6 +93,7 @@ function reducer(state, action) {
         ...initialState,
         questions: state.questions,
         status: "ready",
+        highscore: state.highscore,
       };
 
     case "tick":
@@ -95,6 +105,8 @@ function reducer(state, action) {
           state.points > state.highscore ? state.points : state.highscore,
       };
 
+    case "seeAnswers":
+      return { ...state, answer: state.answers[state.index], status: "verify" };
     default:
       throw new Error("Action is unknown");
   }
@@ -140,7 +152,7 @@ function App() {
             selectedNumOfQuestions={selectedNumOfQuestions}
           />
         )}
-        {status === "active" && (
+        {(status === "active" || status === "verify") && (
           <>
             <ProgressBar
               index={index}
@@ -153,14 +165,24 @@ function App() {
               question={questions[index]}
               dispatch={dispatch}
               answer={answer}
+              status={status}
             />
             <Footer className="footer">
-              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
+              {status !== "verify" && (
+                <Timer
+                  dispatch={dispatch}
+                  secondsRemaining={secondsRemaining}
+                />
+              )}
+              {status === "verify" && (
+                <PreviousButton dispatch={dispatch} index={index} />
+              )}
               <NextButton
                 dispatch={dispatch}
                 answer={answer}
                 index={index}
                 selectedNumOfQuestions={selectedNumOfQuestions}
+                status={status}
               />
             </Footer>
           </>

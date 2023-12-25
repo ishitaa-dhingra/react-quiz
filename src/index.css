@@ -162,9 +162,14 @@ progress {
   float: right;
   margin-top: 5px;
 }
-
-.prev-btn {
+.btn-ui-prev {
   float: left;
+  margin-top: 5px;
+}
+
+.btn-ui-sa {
+  float: left;
+  margin-top: 5px;
 }
 .options {
   display: flex;

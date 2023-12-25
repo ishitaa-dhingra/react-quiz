@@ -23,6 +23,13 @@ function FinishScreen({ points, maxPossiblePoints, highscore, dispatch }) {
         {maxPossiblePoints} ({Math.ceil(percentage)} %)
       </p>
       <p className="highscore">(Highscore : {highscore} points)</p>
+
+      <button
+        className="btn btn-ui-sa"
+        onClick={() => dispatch({ type: "seeAnswers" })}
+      >
+        See answers
+      </button>
       <button
         className="btn btn-ui"
         onClick={() => dispatch({ type: "reset" })}
