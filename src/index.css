@@ -291,3 +291,64 @@ progress {
   justify-content: space-between;
   align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .app {
+    padding: 1rem;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .app-header {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  .progress {
+    font-size: 1.4rem;
+  }
+
+  progress {
+    height: 8px;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .options {
+    margin-bottom: 2rem;
+  }
+
+  .timer {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .loader-container {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .counter {
+    margin: 2rem;
+  }
+}
