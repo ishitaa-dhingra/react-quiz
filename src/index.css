@@ -316,6 +316,9 @@ progress {
     font-size: 3.6rem;
     text-align: center;
   }
+  h2 {
+    text-align: center;
+  }
 
   .progress {
     font-size: 1.4rem;
