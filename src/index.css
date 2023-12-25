@@ -227,7 +227,7 @@ progress {
 }
 
 .timer {
-  position: absolute;
+  float: left;
   font-size: 1.8rem;
   color: var(--color-medium);
   border: 2px solid var(--color-dark);
@@ -286,11 +286,6 @@ progress {
   cursor: pointer;
   margin-left: 40px;
 }
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 @media screen and (max-width: 600px) {
   body {
@@ -347,12 +342,6 @@ progress {
   .loader-container {
     margin-top: 2rem;
     font-size: 1.2rem;
-  }
-
-  .footer {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
   }
 
   .counter {

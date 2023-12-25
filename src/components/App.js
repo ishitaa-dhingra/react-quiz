@@ -11,7 +11,6 @@ import ProgressBar from "./ProgressBar";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
-import PrevButton from "./PrevButton";
 
 const SECS_PER_QUESTION = 30;
 const initialState = {
@@ -96,13 +95,6 @@ function reducer(state, action) {
           state.points > state.highscore ? state.points : state.highscore,
       };
 
-    case "prevQuestion":
-      return {
-        ...state,
-        index: state.index > 0 ? state.index - 1 : 0,
-        answer: state.index > 0 ? state.answers[state.index - 1] : state.answer,
-      };
-
     default:
       throw new Error("Action is unknown");
   }
@@ -163,7 +155,6 @@ function App() {
               answer={answer}
             />
             <Footer className="footer">
-              <PrevButton dispatch={dispatch} />
               <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
               <NextButton
                 dispatch={dispatch}
